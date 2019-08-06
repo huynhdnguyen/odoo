@@ -286,8 +286,8 @@ chown $OE_USER:$OE_USER /var/log/$OE_USER
 # Install ODOO
 #--------------------------------------------------
 echo -ne "\n${green} ==== Installing ODOO Server ==== ${reset}\n"
+#git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/odoo $OE_HOME_EXT/
 git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/odoo $OE_HOME_EXT/
-
 if ${IS_ENTERPRISE}; then
     # Odoo Enterprise install!
     echo -ne "\n--- Create symlink for node ---- ${reset}\n"
