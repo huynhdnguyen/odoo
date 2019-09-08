@@ -66,8 +66,8 @@ echo -e "\n--- Installing Python 3 + pip3 --"
 sudo apt-get install git python3 python3-pip build-essential wget python3-dev python3-venv python3-wheel libxslt-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libpng12-0 gdebi -y
 
 echo -e "\n---- Install python packages/requirements ----"
-##sudo pip3 install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
-sudo pip3 install -r https://github.com/phungthanhdong/vbs-odoo/tree/staging/requirements.txt
+sudo pip3 install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
+##sudo pip3 install -r https://github.com/phungthanhdong/vbs-odoo.git/requirements.txt
 
 echo -e "\n---- Installing nodeJS NPM and rtlcss for LTR support ----"
 sudo apt-get install nodejs npm
@@ -106,7 +106,7 @@ sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
 #--------------------------------------------------
 echo -e "\n==== Installing ODOO Server ===="
 ##sudo git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/odoo $OE_HOME_EXT/
-sudo git clone --depth 1 --branch $OE_VERSION https://github.com/phungthanhdong/vbs-odoo/tree/staging $OE_HOME_EXT/
+sudo git clone --depth 1 --branch $OE_VERSION https://github.com/phungthanhdong/vbs-odoo.git $OE_HOME_EXT/
 if [ $IS_ENTERPRISE = "True" ]; then
     # Odoo Enterprise install!
     echo -e "\n--- Create symlink for node"
@@ -115,7 +115,7 @@ if [ $IS_ENTERPRISE = "True" ]; then
     sudo su $OE_USER -c "mkdir $OE_HOME/enterprise/addons"
 
 ##    GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/enterprise "$OE_HOME/enterprise/addons" 2>&1)
-     GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://github.com/phungthanhdong/vbs-odoo/tree/staging "$OE_HOME/enterprise/addons" 2>&1)
+     GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://github.com/phungthanhdong/vbs-odoo.git "$OE_HOME/enterprise/addons" 2>&1)
 
     while [[ $GITHUB_RESPONSE == *"Authentication"* ]]; do
         echo "------------------------WARNING------------------------------"
@@ -125,7 +125,7 @@ if [ $IS_ENTERPRISE = "True" ]; then
         echo "-------------------------------------------------------------"
         echo " "
 ##        GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/enterprise "$OE_HOME/enterprise/addons" 2>&1)
-          GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://github.com/phungthanhdong/vbs-odoo/tree/staging "$OE_HOME/enterprise/addons" 2>&1)
+          GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://github.com/phungthanhdong/vbs-odoo.git "$OE_HOME/enterprise/addons" 2>&1)
     done
 
     echo -e "\n---- Added Enterprise code under $OE_HOME/enterprise/addons ----"
