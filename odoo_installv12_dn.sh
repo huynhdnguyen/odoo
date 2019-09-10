@@ -66,8 +66,8 @@ sudo su - postgres -c "createuser -s $OE_USER" 2> /dev/null || true
 echo -e "\n--- Installing Python 3 + pip3 --"
 sudo apt-get install git python3 python3-pip build-essential wget python3-dev python3-venv python3-wheel libxslt-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libpng12-0 gdebi -y
 
-echo -e "\n---- Install python packages/requirements ----"
-sudo pip3 install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
+##echo -e "\n---- Install python packages/requirements ----"
+##sudo pip3 install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
 ##sudo pip3 install -r https://github.com/phungthanhdong/vbs-odoo.git/requirements.txt
 
 echo -e "\n---- Installing nodeJS NPM and rtlcss for LTR support ----"
@@ -108,6 +108,8 @@ sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
 echo -e "\n==== Installing ODOO Server ===="
 ##sudo git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/odoo $OE_HOME_EXT/
 sudo git clone --depth 1 --branch $OE_BRAND https://github.com/phungthanhdong/vbs-odoo.git $OE_HOME_EXT/
+echo -e "\n---- Install python packages/requirements ----"
+sudo pip3 install -r $OE_HOME_EXT/requirements.txt
 if [ $IS_ENTERPRISE = "True" ]; then
     # Odoo Enterprise install!
     echo -e "\n--- Create symlink for node"
